@@ -2,7 +2,7 @@ let carts = document.querySelectorAll('.add-cart');
 
 let products = [
   {
-   name:'Grey Tshirt',
+   name:'grey Tshirt',
    tag: 'greytshirt',
    price: 15,
    inCart: 0
@@ -61,7 +61,7 @@ function cartNumbers(product){
   setItems(product);
 
 }
-
+//----------------------------------------------------------
 function setItems(product){
     let cartItems = localStorage.getItem('productsInCart');
     cartItems = JSON.parse(cartItems);
@@ -82,7 +82,7 @@ function setItems(product){
     }
 localStorage.setItem('productsInCart', JSON.stringify(cartItems));
 }
-
+//----------------------------------------------------------
 function totalCost(product){
 let cartCost = localStorage.getItem('totalCost');
 if(cartCost != null){
@@ -110,9 +110,9 @@ localStorage.setItem('totalCost', cartCost + product.price);
           </div>
           <div class="price">$${item.price},00</div>
           <div class="quantity">
-             <ion-icon name="remove-circle"></ion-icon>
-             <span>${item.inCart}</span>
-             <ion-icon name="add-circle"></ion-icon>
+             <ion-icon name="remove-circle" id="subtract"></ion-icon>
+             <span id="quantitty">${item.inCart}</span>
+             <ion-icon name="add-circle" id="add"></ion-icon>
           </div>
           <div class="total">
           $${item.inCart * item.price},00
@@ -129,9 +129,36 @@ localStorage.setItem('totalCost', cartCost + product.price);
   
  }
 
+//-------------------EFOSA I also tried to increase my cart quantity by clicking on the plus sign
+ /*function decreament(){
+let minus = document.querySelector('#subtract');
+let plus  = document.querySelector('#add');
+let itemValue =document.querySelector('#quantitty')
+console.log(itemValue);
+minus.addEventListener('click', (e)=>{
+
+   itemValue = parseInt(itemValue.value) - 1; 
+   
+})
+
+ }*/
+//-------------- EFOSA THIS IS WHERE THE ISSUE IS-----------
+ function removeItem(){
+     let cartItems = localStorage.getItem('productsInCart');
+let removeButton = document.querySelector('.ion-button');
+removeButton.addEventListener('click', (e)=>{
+for(let i=0; i<cartItems.length; i++){
+
+    cartItems[i].splice(0, 1);
+}
+
+})
+ }
 
 
-
-
+ function deleteitems(){
+     
+ }
 onLoadCartNumbers();
 displayCart();
+removeItem();
