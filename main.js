@@ -46,11 +46,15 @@ function onLoadCartNumbers(){
 
 }
 
-function cartNumbers(product){
+function cartNumbers(product, quantity){
  let productNumbers = localStorage.getItem('cartNumbers');
 
  productNumbers = parseInt(productNumbers);
-
+if(product === 'decrement'){
+  localStorage.setItem('cartNumbers', productNumbers - (1 * quantity));
+     document.querySelector('.cart span').textContent = productNumbers - (1 * quantity);
+ return 
+}
  if(productNumbers){
      localStorage.setItem('cartNumbers', productNumbers + 1);
      document.querySelector('.cart span').textContent = productNumbers + 1;
@@ -59,6 +63,7 @@ function cartNumbers(product){
      document.querySelector('.cart span').textContent =1;
  }
   setItems(product);
+
 
 }
 //----------------------------------------------------------
@@ -103,8 +108,9 @@ localStorage.setItem('totalCost', cartCost + product.price);
       Object.values(cartItems).map(item =>{
             
           productContainer.innerHTML += `
+          <div class="container">
           <div class="product">
-          <ion-icon name ="close-circle" class="ion-button"></ion-icon>
+          <ion-icon name ="close-circle" class="ion-button" data-targ=${item.tag} data-quantity=${item.inCart}></ion-icon>
           <img src='./images/${item.tag}.jpg' width="115">
           <span class="name">${item.name}</span>
           </div>
@@ -117,14 +123,16 @@ localStorage.setItem('totalCost', cartCost + product.price);
           <div class="total">
           $${item.inCart * item.price},00
           </div>
-          `;
-         });
-         productContainer.innerHTML +=`
          <div class="basketTotalContainer">
              <h4 class="basketTotalTitle">Basket Total</h4>
              <h4 class="basketTotal">$${cartCost},00</h4>
          </div>
-         `;
+          </div>
+
+          `;
+         });
+         
+         
   }
   
  }
@@ -143,17 +151,30 @@ minus.addEventListener('click', (e)=>{
 
  }*/
 //-------------- EFOSA THIS IS WHERE THE ISSUE IS-----------
- function removeItem(){
-     let cartItems = localStorage.getItem('productsInCart');
-let removeButton = document.querySelector('.ion-button');
-removeButton.addEventListener('click', (e)=>{
-for(let i=0; i<cartItems.length; i++){
 
-    cartItems[i].splice(0, 1);
-}
+ 
 
-})
- }
+     let removeButton = document.querySelector('.products');
+     removeButton.addEventListener('click', (e)=>{
+         if(e.target.name === 'close-circle'){
+           
+         let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+        console.log(cartItems);
+        let item = e.target.getAttribute('data-targ');
+        console.log(item);
+         delete cartItems[item];
+         localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+         console.log(cartItems);
+         let itemQuantity = e.target.getAttribute('data-quantity');
+         console.log(itemQuantity);
+         cartNumbers('decrement', itemQuantity);
+         //removeButton.parentElement.parentElement.remove();
+         e.target.parentNode.parentNode.remove();
+
+         }
+
+     })
+
 
 
  function deleteitems(){
@@ -161,4 +182,6 @@ for(let i=0; i<cartItems.length; i++){
  }
 onLoadCartNumbers();
 displayCart();
-removeItem();
+
+//let productContainer = document.querySelector(".products");
+//productContainer.addEventListener('click', removeItem);
