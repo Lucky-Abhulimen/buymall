@@ -123,36 +123,28 @@ localStorage.setItem('totalCost', cartCost + product.price);
           <div class="total">
           $${item.inCart * item.price},00
           </div>
-         <div class="basketTotalContainer">
-             <h4 class="basketTotalTitle">Basket Total</h4>
-             <h4 class="basketTotal">$${cartCost},00</h4>
-         </div>
+         
           </div>
 
           `;
          });
+         productContainer.innerHTML += ` 
+         <div class="basketTotalContainer">
+             <h4 class="basketTotalTitle">Basket Total</h4>
+             <h4 class="basketTotal">$${cartCost},00</h4>
+         </div>
+         <div class="checkout">
+             <button class="clear-cart">clear cart</button>
+             <button>checkout</button>
+             
+        </div>
          
+         `
          
   }
   
  }
 
-//-------------------EFOSA I also tried to increase my cart quantity by clicking on the plus sign
- /*function decreament(){
-let minus = document.querySelector('#subtract');
-let plus  = document.querySelector('#add');
-let itemValue =document.querySelector('#quantitty')
-console.log(itemValue);
-minus.addEventListener('click', (e)=>{
-
-   itemValue = parseInt(itemValue.value) - 1; 
-   
-})
-
- }*/
-//-------------- EFOSA THIS IS WHERE THE ISSUE IS-----------
-
- 
 
      let removeButton = document.querySelector('.products');
      removeButton.addEventListener('click', (e)=>{
@@ -175,11 +167,10 @@ minus.addEventListener('click', (e)=>{
 
      })
 
+       
 
 
- function deleteitems(){
-     
- }
+ 
 onLoadCartNumbers();
 displayCart();
 

@@ -4,7 +4,10 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
+.products .container .product img{
+    border-radius: 100%;
+   
+}
 header{
   background-image: url('images/hudo.jpg');
   background-repeat: no-repeat;
@@ -12,6 +15,11 @@ header{
   background-position: center;
   height: 150px;
   position: relative;
+}
+main{
+    padding-top: 1%;
+background-color: rgb(238, 237, 238);
+
 }
 .overlay {
     position: absolute;
@@ -151,7 +159,7 @@ padding-right: 5px;
 .total{
     width: 7px;
     display: flex;
-    border-bottom: 1px solid lightgrey;
+    
     align-items: center;
 }
 
@@ -163,9 +171,10 @@ padding-right: 5px;
     justify-content: space-around;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid lightgrey;
+    
     margin-right: 10%;
    flex-wrap: wrap;  
+   margin-bottom: 0;
 }
 
 
@@ -173,16 +182,25 @@ padding-right: 5px;
 .products .product{
     display: flex;
     align-items: center;
-    margin-bottom: 1%;
-   margin-right: 5%;
+    margin-right: 5%;
+   
+    
+}
+.products .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: -100px;
     
 }
 
 .products .price{
-    
+   
 }
 .products .quantity{
-   margin-right: 5%; 
+   margin-right: 5%;
+   
 }
 
 .products .total{
@@ -193,9 +211,12 @@ padding-right: 5px;
     display: flex;
     justify-content: flex-end;
     margin-left: 15%;
+    margin-top: 1%;
     width: 100%;
     padding: 10px 0;
     border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    
 }
 .basketTotalTitle{
     width:30%;
@@ -203,3 +224,94 @@ padding-right: 5px;
 .basketTotal{
     width: 11%;
 }
+.checkout {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15%;
+    width: 100%;
+    padding: 7px 0;
+   color: lightcoral;
+    
+    margin-right: 10%;
+}
+
+.checkout button {
+border: 30% 20%;
+
+}
+
+
+/*--------  MOBILE DESIGN -------  */
+@media only screen and (max-width:418px) {
+   nav{
+       width: 100%;
+       display: flex;
+       font-size: 11px;
+   }
+    nav h2{
+        position: absolute;
+        left: 0;
+        margin-right: auto;
+    }
+    nav ul {
+   position: absolute;
+   right: 0;
+
+    }
+}
+@media only screen and (max-width:542px){
+    .price{
+       position: absolute;
+       left:34%;
+    }
+    .total{
+        position: absolute;
+        right: 15%;
+    }
+    .quantity{
+        position: absolute;
+        left: 58%;
+    }
+   .products .container .product{
+       position: absolute;
+       left: 0;
+   }
+   .products .container .product img{
+       width: 90px;
+       position: absolute;
+       left: 32px;
+       border-radius: 70%;
+   }
+   .products .container .product span{
+       background-color: orangered;
+       position: absolute;
+       bottom:30px;
+       opacity: 0;
+       font-size: 15px;
+
+   }
+   .products .container .price{
+       
+       position: absolute;
+       left: 34%;
+   }
+   .products .container .quantity{
+       width: 30%;
+    
+       position: absolute;
+       left: 55%;
+   }
+   .products .container .total{
+       width: 10%;
+      
+       position: absolute;
+       right: 0.5%;
+      
+   }
+   .products .container {
+       margin-bottom: 0.5px;
+       
+   }
+
+}
+ 
